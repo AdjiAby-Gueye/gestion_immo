@@ -1,0 +1,31 @@
+.content
+{
+    border-radius: 30px;
+    padding: 0px 22px;
+    height: $height-content;
+    &.top
+    {
+        height: $height-content-top !important;
+    }
+    //overflow-y: auto;
+    //@apply overflow-auto bg-theme-2 flex-1 pb-10;
+    /*@screen max-md {
+        @apply px-4 max-w-full;
+    }*/
+    @media (max-width: $md)
+    {
+        @apply px-4 max-w-full;
+    }
+
+    &:before
+    {
+        content: "";
+        @apply w-full h-px block;
+    }
+}
+
+.subcontent
+{
+    height: 92%;
+    @apply overflow-auto;
+}

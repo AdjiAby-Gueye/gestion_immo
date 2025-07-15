@@ -1,0 +1,25 @@
+html {
+    background-color: #0999BF;
+}
+
+html * {
+    position: relative;
+}
+
+body {
+    margin: 0;
+}
+
+.bg-miror {
+    background-color: rgba(12, 12, 12, 0.72) !important;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    @apply overflow-x-hidden py-3 px-8 font-roboto text-sm text-gray-800;
+
+@media (max-width: $ sm) {
+@apply px-3;
+}
+
+}

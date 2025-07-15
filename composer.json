@@ -1,0 +1,149 @@
+{
+    "name": "laravel/laravel",
+    "type": "project",
+    "description": "The Laravel Framework.",
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^7.3 || ^8.0",
+        "ext-curl": "*",
+        "barryvdh/laravel-dompdf": "^2.0",
+        "barryvdh/laravel-snappy": "^1.0",
+        "doctrine/dbal": "^2.10",
+        "fideloper/proxy": "^4.4.0",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "h4cc/wkhtmltopdf-amd64": "0.12.x",
+        "kwn/number-to-words": "^2.11",
+        "laravel/framework": "^8.0",
+        "laravel/helpers": "^1.2",
+        "laravel/tinker": "^2.0",
+        "laravel/ui": "^3.0",
+        "maatwebsite/excel": "^3.1",
+        "mpdf/mpdf": "^8.0",
+        "phpoffice/phpspreadsheet": "^1.16",
+        "pragmarx/countries": "^0.8.2",
+        "predis/predis": "^1.1",
+        "rebing/graphql-laravel": "^5.1",
+        "sentry/sentry-laravel": "^2.4",
+        "simplesoftwareio/simple-qrcode": "^4.1",
+        "spatie/laravel-permission": "^3.13",
+        "tymon/jwt-auth": "^1.0",
+        "webklex/laravel-pdfmerger": "^1.3"
+    },
+    "require-dev": {
+        "facade/ignition": "^2.3.6",
+        "filp/whoops": "^2.0",
+        "mockery/mockery": "^1.3.1",
+        "nunomaduro/collision": "^5.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
+        "config-server-windows": [
+            "rmdir /s bootstrap/cache/* storage/framework/views/*",
+            "mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache",
+            "cp GraphQLController_local.php vendor/rebing/graphql-laravel/src/GraphQLController.php",
+            "php artisan clear-compiled",
+            "composer dumpautoload",
+            "php artisan config:cache",
+            "mkdir -p public/uploads/users public/uploads/societefacturations public/uploads/entites public/uploads/bes public/uploads/produits public/uploads/bes public/uploads/categorieproduits public/uploads/echeances public/uploads/inboxs public/uploads/annexes "
+        ],
+        "config-server-base": [
+            "sudo chmod -R 777 storage/ bootstrap/cache",
+            "mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache",
+            "php artisan clear-compiled",
+            "composer dumpautoload",
+            "php artisan config:clear",
+            "php artisan config:cache",
+            "mkdir -p public/uploads/users public/uploads/societefacturations public/uploads/entites public/uploads/bes public/uploads/produits public/uploads/categorieproduits public/uploads/cartes public/uploads/assurances public/uploads/cautions public/uploads/contratprestations public/uploads/contrats public/uploads/demanderesiliations public/uploads/documents public/uploads/factures public/uploads/locataires public/uploads/obligationadministratives public/uploads/versementchargecoproprietes public/uploads/versementloyers public/uploads/demandeinterventions public/uploads/appartements public/uploads/compositions public/uploads/etatlieu_pieces public/uploads/etatlieus public/uploads/categorieinterventions public/uploads/echeances public/uploads/inboxs public/uploads/annexes public/uploads/avisecheances public/uploads/paiementloyers public/uploads/testdirectory",
+            "sudo chmod -R 777 public/uploads/ storage/ bootstrap/cache",
+            "cp GraphQLController_local.php vendor/rebing/graphql-laravel/src/GraphQLController.php"
+        ],
+        "config-server-scireyhan": [
+            "@config-server-base",
+            "sudo chown -R www-data:www-data storage bootstrap/cache"
+        ],
+        "config-server-mac": [
+            "@config-server-base",
+            "sudo chown -R _www:_www storage bootstrap/cache"
+        ],
+        "config-server-linux": [
+            "@config-server-scireyhan",
+            "sudo chmod -R 777 public/uploads/"
+        ],
+        "update-server-base": [
+            "git fetch --all",
+            "git reset --hard origin/develop",
+            "git pull",
+            "@config-server-scireyhan"
+        ],
+        "update-server-scireyhan": [
+            "@update-server-base",
+            "cp .env.server .env",
+            "php artisan config:cache",
+            "gulp prod",
+            "cp laravel-echo-server_server.json laravel-echo-server.json"
+        ],
+        "commit-inverse": [
+            "cp public/assets/js/angular/controller.js resources/js/angular/controller.js",
+            "git add .",
+            "git commit -am 'commit'"
+        ],
+        "update-server-scireyhan-test": [
+            "@update-server-base",
+            "cp .env.server-test .env",
+            "php artisan config:cache",
+            "gulp test",
+            "cp laravel-echo-server_server.json laravel-echo-server.json"
+        ],
+        "update-server-scireyhan-front": [
+            "cd /var/www/html/scireyhan_front && composer update-server-scireyhan",
+            "cd /var/www/html/scireyhan_back"
+        ],
+        "update-server-scireyhan-front-test": [
+            "cd /var/www/html/scireyhan_front_test && composer update-server-scireyhan-test",
+            "cd /var/www/html/scireyhan_back_test"
+        ]
+    }
+}

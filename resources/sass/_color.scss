@@ -1,0 +1,38 @@
+// definir les couleurs de l'application root
+
+
+$theme-claire: #E5252D;
+$theme-sombre: #BD311D; // 
+$fond: #EBEDEC; // background
+$fond-sombre: #828282; 
+$theme-dark: #494848; // couleur principale
+$theme-success: #0AC68C;
+
+
+
+.theme-sombre {
+    background-color: $theme-sombre;
+    color: $fond;
+}
+.theme-dark {
+    background-color: $theme-dark !important;
+    color: $fond;
+}
+.border-raduis-left{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.border-raduis-right{
+    border-top-right-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+}
+.border-raduis-top{
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+.border-raduis-bottom{
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+

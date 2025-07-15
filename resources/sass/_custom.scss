@@ -1,0 +1,80 @@
+.image_fit {
+  width: 30px !important;
+  height: 30px !important;
+}
+strong,
+.icon-i {
+  color: $theme-sombre !important;
+  cursor: pointer;
+}
+button {
+  cursor: pointer;
+}
+button:focus {
+  outline: none !important;
+}
+input:focus {
+  outline: none !important;
+}
+//
+.custom-btn {
+  background-color: #ffffff;
+  color: $theme-dark;
+  border: 1px solid $theme-sombre;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: all 0.3s;
+  &:hover {
+    background-color: $fond;
+    border: 1px solid $theme-claire;
+  }
+}
+
+.dropdown {
+  .custom-btn {
+    @apply py-1 .px-10;
+    background-color: $theme-sombre;
+    color: #ebedec;
+    border: 1px solid $theme-claire;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: all 0.3s;
+    &:hover {
+      background-color: $theme-claire;
+      border: 1px solid $theme-sombre;
+    }
+  }
+  // focus
+  .custom-btn:focus {
+    outline: none;
+  }
+  .dropdown-box-btn {
+    @apply my-1;
+    color: $theme-dark;
+    transition: all 0.3s;
+    &:hover {
+      color: $theme-sombre;
+    }
+  }
+  // focus
+  .dropdown-box-btn:focus {
+    outline: none;
+  }
+}
+
+.table {
+  .thead {
+    background-color: $theme-sombre;
+    color: $fond;
+    border-radius: 5px;
+    th:first-child {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+    th:last-child {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  }
+}
