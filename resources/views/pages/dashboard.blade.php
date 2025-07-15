@@ -9,8 +9,10 @@
 
     <!-- Stats Cards Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-8">
-        <!-- Appartements Card -->
-        <div class="stat-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+        <!-- Card template -->
+       
+<a href="/list" class="stat-card bg-white rounded-xl shadow-md overflow-hidden">
+     <div class="stat-card bg-white rounded-xl shadow-md overflow-hidden">
             <div class="p-5 flex items-center">
                 <div class="stat-icon mr-4 p-3 rounded-full bg-blue-50 text-blue-600">
                     <i class="fas fa-home text-xl"></i>
@@ -21,9 +23,8 @@
                 </div>
             </div>
         </div>
-
-        <!-- Immeubles Card -->
-        <div class="stat-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+</a>
+        <div class="stat-card bg-white rounded-xl shadow-md overflow-hidden">
             <div class="p-5 flex items-center">
                 <div class="stat-icon mr-4 p-3 rounded-full bg-green-50 text-green-600">
                     <i class="fas fa-building text-xl"></i>
@@ -35,8 +36,7 @@
             </div>
         </div>
 
-        <!-- Locataires Card -->
-        <div class="stat-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+        <div class="stat-card bg-white rounded-xl shadow-md overflow-hidden">
             <div class="p-5 flex items-center">
                 <div class="stat-icon mr-4 p-3 rounded-full bg-purple-50 text-purple-600">
                     <i class="fas fa-users text-xl"></i>
@@ -48,8 +48,7 @@
             </div>
         </div>
 
-        <!-- Contrats Card -->
-        <div class="stat-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+        <div class="stat-card bg-white rounded-xl shadow-md overflow-hidden">
             <div class="p-5 flex items-center">
                 <div class="stat-icon mr-4 p-3 rounded-full bg-yellow-50 text-yellow-600">
                     <i class="fas fa-file-contract text-xl"></i>
@@ -61,8 +60,7 @@
             </div>
         </div>
 
-        <!-- Utilisateurs Card -->
-        <div class="stat-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+        <div class="stat-card bg-white rounded-xl shadow-md overflow-hidden">
             <div class="p-5 flex items-center">
                 <div class="stat-icon mr-4 p-3 rounded-full bg-red-50 text-red-600">
                     <i class="fas fa-user-cog text-xl"></i>
@@ -74,44 +72,81 @@
             </div>
         </div>
     </div>
-
 </div>
 
+
+
+
+
+
+
+
+
+
+
 <style>
-    .dashboard-container {
-        max-width: 1400px;
-        margin: 0 auto;
-    }
+.dashboard-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
-    .stat-card {
-        border: 1px solid #f0f0f0;
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    }
+.stat-card {
+  border: 1px solid #f0f0f0;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
 
-    .stat-card:hover {
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
+.stat-card:nth-child(1) { animation-delay: 0s; }
+.stat-card:nth-child(2) { animation-delay: 0.1s; }
+.stat-card:nth-child(3) { animation-delay: 0.2s; }
+.stat-card:nth-child(4) { animation-delay: 0.3s; }
+.stat-card:nth-child(5) { animation-delay: 0.4s; }
 
-    .stat-icon {
-        transition: transform 0.3s ease;
-    }
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-    .stat-card:hover .stat-icon {
-        transform: scale(1.1);
-    }
+.stat-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
 
-    .stat-value {
-        font-family: 'Inter', sans-serif;
-    }
+.stat-icon {
+  transition: transform 0.3s ease;
+}
 
-    @media (max-width: 768px) {
-        .dashboard-header {
-            flex-direction: column;
-            align-items: flex-start;
-        }
+.stat-card:hover .stat-icon i {
+  transform: rotate(10deg);
+}
 
-        .date-display {
-            margin-top: 0.5rem;
-        }
-    }
+.stat-value {
+  font-family: 'Inter', sans-serif;
+}
+
+
+
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .date-display {
+    margin-top: 0.5rem;
+  }
+}
+
 </style>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.stat-card').forEach((card, index) => {
+      card.style.animationDelay = `${index * 0.1}s`;
+      card.classList.add('fade-in-up');
+    });
+  });
+</script>

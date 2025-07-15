@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
-                "name" => "root",
+                "name" => "AdjiAby",
                 "email" => "adjiaby.gueye@edu.unchk.sn",
                 "image" => 'assets/images/upload.jpg',
                 "password" => "passer123",

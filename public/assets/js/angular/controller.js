@@ -12,7 +12,7 @@ var BASE_URL = "//" + location.host + "/gestion_immo/public/";
 var imgupload = BASE_URL + "/assets/images/upload.jpg";
 var msg_erreur = "Erreur serveur";
 location.host.includes("localhost") || location.host.includes("127.0.0.1")
-    ? (BASE_URL = "//" + location.host + "/immo_uvs/public/")
+    ? (BASE_URL = "//" + location.host + "/gestion_immo/public/")
     : (BASE_URL = "//" + location.host + "/");
 
 

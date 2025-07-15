@@ -2,7 +2,7 @@
 <nav class="side-nav relative flex flex-col  bg" ng-class="isActiveMenu ? 'd-none' : ''" ng-cloak="">
     <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
         <div class="col-span-6 sm:col-span-6 ">
-            <img alt="LOGO" class="hpx-70 text-center shadow p-1 w-30 mb-20" style="border: 1px solid #BD311D; border-radius: 10px;" ng-class="theme.getCurrent() == 'theme-Groupe' ? 'w-30' : 'w-24'" src="assets/images/LOGO-API.png">
+            <img alt="LOGO" class="hpx-70 text-center shadow p-1 w-30 mb-20" style="border: 1px solid #BD311D; border-radius: 10px;" ng-class="theme.getCurrent() == 'theme-Groupe' ? 'w-30' : 'w-24'" src="assets/images/LOGO-API.jpeg "width="200" height="auto">
         </div>
     </div>
 

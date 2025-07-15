@@ -181,21 +181,9 @@ class LocataireController extends SaveModelController
                     $item->revenus = $request->revenus;
                     $item->expatlocale = $request->expatlocale;
 
-                    if ($request->mandataire) {
-                        $item->mandataire = $request->mandataire;
-                    }
-                    if ($request->lieux_naissance) {
-                        $item->lieux_naissance = $request->lieux_naissance;
-                    }
-                    if ($request->date_naissance) {
-                        $item->date_naissance = $request->date_naissance;
-                    }
-                    if ($request->paysnaissance) {
-                        $item->pays_naissance = $request->paysnaissance;
-                    }
-                    if ($request->adresse) {
-                        $item->adresseentreprise = $request->adresse;
-                    }
+                   
+                    
+
                     if ($request->ville) {
                         $item->ville = $request->ville;
                     }

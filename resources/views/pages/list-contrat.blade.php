@@ -1,19 +1,7 @@
 @if(auth()->user()->can('liste-contrat') || auth()->user()->can('modification-contrat') || auth()->user()->can('suppression-contrat'))
 <div class="col-span-12 lg:col-span-4 classe_generale">
-    <div class="intro-y pr-1 mt-4">
-        <div class="box p-2">
-            <div class="pos__tabs nav-tabs justify-center flex">
-                @if(auth()->user()->can('creation-contrat'))
-                <a data-toggle="tab" data-target="#contrats-actifs" href="javascript:;" class="flex-1 py-2 text-center active" ng-click="pageChanged('contrat')">Contrats Actifs</a>
-                <a data-toggle="tab" data-target="#contrats-resilies" href="javascript:;" class="flex-1 py-2 text-center" ng-click="pageChanged('contrat')">Contrats Résiliés</a>
-                <a data-toggle="tab" data-target="#contrats-en-attente" href="javascript:;" class="flex-1 py-2 text-center" ng-click="pageChanged('contrat')">En Attente</a>
-                @endif
-            </div>
-        </div>
-    </div>
-    <div class="tab-content">
-        <div class="tab-content__pane active" id="contrats-actifs">
-            <div class="grid grid-cols-12 gap-6 subcontent">
+
+  <div class="grid grid-cols-12 gap-6 subcontent">
                 <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
                     <div class="col-span-12 mt-6">
                         <div class="sm:flex items-center">
@@ -156,7 +144,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="intro-x" ng-repeat="item in dataPage['contrats'] | filter:{ etat: 'actif' }">
+                                        <tr class="intro-x" ng-repeat="item in dataPage['contrats'] ">
                                             <td>
                                                 <div class="font-medium whitespace-no-wrap">@{{item.descriptif}}</div>
                                             </td>
@@ -228,147 +216,5 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Onglet Contrats Résiliés -->
-        <div class="tab-content__pane" id="contrats-resilies">
-            <div class="grid grid-cols-12 gap-6 subcontent">
-                <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
-                    <div class="col-span-12 mt-6">
-                        <!-- Contenu similaire mais filtré pour les contrats résiliés -->
-                        <div class="overflow-table">
-                            <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
-                                <table class="table table-report sm:mt-2">
-                                    <thead class="rounded">
-                                        <tr class="thead rounded">
-                                            <th class="whitespace-no-wrap">Descriptif</th>
-                                            <th class="whitespace-no-wrap text-center">Locataire</th>
-                                            <th class="whitespace-no-wrap text-center">Appartement</th>
-                                            <th class="whitespace-no-wrap text-center">Date Résiliation</th>
-                                            <th class="whitespace-no-wrap text-center">Motif</th>
-                                            <th class="text-center whitespace-no-wrap">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="intro-x" ng-repeat="item in dataPage['contrats'] | filter:{ etat: 'resilie' }">
-                                            <td>
-                                                <div class="font-medium whitespace-no-wrap">@{{item.descriptif}}</div>
-                                            </td>
-                                            <td>
-                                                <div ng-if="item.locataire.prenom" class="font-medium whitespace-no-wrap text-center">
-                                                    @{{ item.locataire.prenom }} @{{ item.locataire.nom }}
-                                                </div>
-                                                <div ng-if="item.locataire.nomentreprise" class="font-medium whitespace-no-wrap text-center">
-                                                    @{{ item.locataire.nomentreprise }}
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="font-medium whitespace-no-wrap text-center">@{{ item.appartement.nom }}</div>
-                                            </td>
-                                            <td>
-                                                <div class="font-medium whitespace-no-wrap text-center">@{{ item.date_resiliation | date:'dd/MM/yyyy' }}</div>
-                                            </td>
-                                            <td>
-                                                <div class="font-medium whitespace-no-wrap text-center">@{{ item.motif_resiliation }}</div>
-                                            </td>
-                                            <td class="table-report__action w-56">
-                                                <nav class="menu-leftToRight uk-flex text-center">
-                                                    <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open2contrat-@{{ item.id }}">
-                                                    <label class="menu-open-button theme-sombre" for="menu-open2contrat-@{{ item.id }}">
-                                                        <span class="hamburger bg-white hamburger-1"></span>
-                                                        <span class="hamburger bg-white hamburger-2"></span>
-                                                        <span class="hamburger bg-white hamburger-3"></span>
-                                                    </label>
-                                                    <button class="menu-item btn border-0 bg-info text-white fsize-16" ng-click="showModalDetail('contrat',item.id)" title="Détails">
-                                                        <span class="fas fa-info-circle"></span>
-                                                    </button>
-                                                    <a href="generate-pdf-contratById/@{{item.id}}" target="_blank" class="menu-item btn border-0 bg-danger text-white fsize-16" title="PDF">
-                                                        <span class="fas fa-file-pdf"></span>
-                                                    </a>
-                                                    @if(auth()->user()->can('suppression-contrat'))
-                                                    <button class="menu-item btn border-0 bg-danger text-white fsize-16" ng-click="deleteElement('contrat',item.id)" title="Supprimer">
-                                                        <span class="fa fa-trash-alt"></span>
-                                                    </button>
-                                                    @endif
-                                                </nav>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Onglet Contrats en Attente -->
-        <div class="tab-content__pane" id="contrats-en-attente">
-            <div class="grid grid-cols-12 gap-6 subcontent">
-                <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
-                    <div class="col-span-12 mt-6">
-                        <!-- Contenu similaire mais filtré pour les contrats en attente -->
-                        <div class="overflow-table">
-                            <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
-                                <table class="table table-report sm:mt-2">
-                                    <thead class="rounded">
-                                        <tr class="thead rounded">
-                                            <th class="whitespace-no-wrap">Descriptif</th>
-                                            <th class="whitespace-no-wrap text-center">Locataire</th>
-                                            <th class="whitespace-no-wrap text-center">Appartement</th>
-                                            <th class="whitespace-no-wrap text-center">Date Création</th>
-                                            <th class="text-center whitespace-no-wrap">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="intro-x" ng-repeat="item in dataPage['contrats'] | filter:{ etat: 'en_attente' }">
-                                            <td>
-                                                <div class="font-medium whitespace-no-wrap">@{{item.descriptif}}</div>
-                                            </td>
-                                            <td>
-                                                <div ng-if="item.locataire.prenom" class="font-medium whitespace-no-wrap text-center">
-                                                    @{{ item.locataire.prenom }} @{{ item.locataire.nom }}
-                                                </div>
-                                                <div ng-if="item.locataire.nomentreprise" class="font-medium whitespace-no-wrap text-center">
-                                                    @{{ item.locataire.nomentreprise }}
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="font-medium whitespace-no-wrap text-center">@{{ item.appartement.nom }}</div>
-                                            </td>
-                                            <td>
-                                                <div class="font-medium whitespace-no-wrap text-center">@{{ item.created_at | date:'dd/MM/yyyy' }}</div>
-                                            </td>
-                                            <td class="table-report__action w-56">
-                                                <nav class="menu-leftToRight uk-flex text-center">
-                                                    <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open3contrat-@{{ item.id }}">
-                                                    <label class="menu-open-button theme-sombre" for="menu-open3contrat-@{{ item.id }}">
-                                                        <span class="hamburger bg-white hamburger-1"></span>
-                                                        <span class="hamburger bg-white hamburger-2"></span>
-                                                        <span class="hamburger bg-white hamburger-3"></span>
-                                                    </label>
-                                                    <button class="menu-item btn border-0 bg-info text-white fsize-16" ng-click="showModalUpdate('contrat',item.id)" title="Modifier">
-                                                        <span class="fal fa-edit"></span>
-                                                    </button>
-                                                    <button class="menu-item btn border-0 bg-success text-white fsize-16" ng-click="showModalStatut($event,'contrat',1, item, 'Valider')" title="Valider">
-                                                        <span class="fas fa-check"></span>
-                                                    </button>
-                                                    @if(auth()->user()->can('suppression-contrat'))
-                                                    <button class="menu-item btn border-0 bg-danger text-white fsize-16" ng-click="deleteElement('contrat',item.id)" title="Supprimer">
-                                                        <span class="fa fa-trash-alt"></span>
-                                                    </button>
-                                                    @endif
-                                                </nav>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 @endif

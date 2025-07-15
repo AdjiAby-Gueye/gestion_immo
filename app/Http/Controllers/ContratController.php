@@ -263,7 +263,7 @@ class ContratController extends SaveModelController
                                 $locataireexistant->save();
                                 $text = "Bonjour , votre compte résident GESTIMMO vient d'etre crée! voici vos informations de connection: login: $mail  , mot de passe: passer ";
 
-                                Outil::envoiEmail($mail, 'COMPTE RESIDENT', $text);
+                            //    Outil::envoiEmail($mail, 'COMPTE RESIDENT', $text);
                             } else if ($locataireexistant->prenom) {
 
                                 //  dd($locataireexistant) ;
@@ -295,7 +295,7 @@ class ContratController extends SaveModelController
                                 $locataireexistant->save();
 
                                 $text = "Bonjour , votre compte résident GESTIMMO vient d\'etre crée. ci apres vous trouverez vos informations de connection: login: $mail  , mot de passe: passer ";
-                                Outil::envoiEmail($mail, 'COMPTE RESIDENT', $text);
+                                // Outil::envoiEmail($mail, 'COMPTE RESIDENT', $text);
                             }
                         }
                     }
@@ -453,7 +453,7 @@ class ContratController extends SaveModelController
 
                                     $text = "Bonjour , votre compte résident GESTIMMO vient d\'etre crée. ci apres vous trouverez vos informations de connection: login: $mail  , mot de passe: passer ";
 
-                                    Outil::envoiEmail($mail, 'COMPTE RESIDENT', $text);
+                                    // Outil::envoiEmail($mail, 'COMPTE RESIDENT', $text);
                                 }
                             }
                             if ($request->typelocataire == '2') {
@@ -598,7 +598,7 @@ class ContratController extends SaveModelController
 
                                     $text = "Bonjour , votre compte résident GESTIMMO vient d\'etre crée. ci apres vous trouverez vos informations de connection: login: $mail  , mot de passe: passer ";
 
-                                    Outil::envoiEmail($mail, 'COMPTE RESIDENT', $text);
+                                    // Outil::envoiEmail($mail, 'COMPTE RESIDENT', $text);
                                 }
 
                                 //   dd($locataire) ;
@@ -1004,7 +1004,7 @@ class ContratController extends SaveModelController
                         // return Outil::redirectgraphql($this->queryName, "id:{$item->id}", Outil::$queries[$this->queryName]);
                         $data = 1;
                         if ($gestionnaire) {
-                            Outil::envoiEmail($gestionnaire->email, "Notification signature contrat", "Bonjour, la directrice vient de valider le nouveau contrat soumis.", 'maileur', null, ['abou050793@gmail.com', 'mansourpouye36@gmail.com']);
+                            // Outil::envoiEmail($gestionnaire->email, "Notification signature contrat", "Bonjour, la directrice vient de valider le nouveau contrat soumis.", 'maileur', null, ['abou050793@gmail.com', 'mansourpouye36@gmail.com']);
                         }
                     }
                 }
@@ -1088,7 +1088,7 @@ class ContratController extends SaveModelController
                     $nomlocataire = $locataire->nomentreprise;
                 }
                 $message .= $nomlocataire;
-                Outil::envoiEmail($director->email, "Notification signature contrat", $message, 'signaturecontrat', $contrat->id, ['abou050793@gmail.com', 'mansourpouye36@gmail.com']);
+                // Outil::envoiEmail($director->email, "Notification signature contrat", $message, 'signaturecontrat', $contrat->id, ['abou050793@gmail.com', 'mansourpouye36@gmail.com']);
             }
         } catch (\Exception $e) {
             // dd($e);
@@ -1208,7 +1208,7 @@ class ContratController extends SaveModelController
 
                 $contrat->est_soumis = 1;
                 $contrat->save();
-                Outil::envoiEmail($director->email, "Notification signature contrat de location vente", $message, 'signaturecontratridwan', $contrat->id, ['abou050793@gmail.com', 'mansourpouye36@gmail.com'], null);
+                // Outil::envoiEmail($director->email, "Notification signature contrat de location vente", $message, 'signaturecontratridwan', $contrat->id, ['abou050793@gmail.com', 'mansourpouye36@gmail.com'], null);
             }
         } catch (\Exception $e) {
             $errors = "Vérifier les données fournies";
